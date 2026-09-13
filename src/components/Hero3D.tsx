@@ -1,6 +1,7 @@
 'use client';
 
-import { Suspense, useEffect, useState, useRef, Component, ReactNode } from 'react';
+import { Suspense, useEffect, useState, useRef, Component, ReactNode, forwardRef } from 'react';
+import * as THREE from 'three';
 import { Canvas } from '@react-three/fiber';
 import { useGLTF, ContactShadows, useProgress } from '@react-three/drei';
 import gsap from 'gsap';
@@ -28,7 +29,7 @@ class CanvasErrorBoundary extends Component<{ children: ReactNode; fallback: Rea
   }
 }
 
-function CarModel() {
+const CarModel = forwardRef<THREE.Group>((props, ref) => {
   const { scene } = useGLTF('/models/ferrari.glb');
   
   useEffect(() => {
@@ -44,8 +45,9 @@ function CarModel() {
     });
   }, [scene]);
 
-  return <primitive object={scene} position={[0, -0.5, 0]} rotation={[0, Math.PI / 4, 0]} />;
-}
+  return <primitive ref={ref} object={scene} position={[0, -0.5, 0]} rotation={[0, Math.PI / 4, 0]} />;
+});
+CarModel.displayName = 'CarModel';
 
 export function Hero3D() {
   const t = useTranslations('hero');
@@ -57,6 +59,7 @@ export function Hero3D() {
   const panel1Ref = useRef<HTMLDivElement>(null);
   const panel2Ref = useRef<HTMLDivElement>(null);
   const panel3Ref = useRef<HTMLDivElement>(null);
+  const carRef = useRef<THREE.Group>(null);
 
   useEffect(() => {
     if (progress === 100) {
@@ -88,6 +91,18 @@ export function Hero3D() {
       tl.fromTo(panel2Ref.current, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1 }, 1);
       tl.to(panel2Ref.current, { opacity: 0, y: -50, duration: 1 }, 3);
       tl.fromTo(panel3Ref.current, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1 }, 4);
+      
+      if (carRef.current) {
+        // Scroll animations for the 3D car
+        tl.to(carRef.current.rotation, { y: -Math.PI / 2, ease: "power1.inOut", duration: 2 }, 0);
+        tl.to(carRef.current.position, { z: 1.5, x: 1, ease: "power1.inOut", duration: 2 }, 0);
+        
+        tl.to(carRef.current.rotation, { y: -Math.PI, ease: "power1.inOut", duration: 2 }, 2);
+        tl.to(carRef.current.position, { z: 0, x: -1, ease: "power1.inOut", duration: 2 }, 2);
+        
+        tl.to(carRef.current.rotation, { y: -Math.PI * 1.75, ease: "power1.inOut", duration: 1 }, 4);
+        tl.to(carRef.current.position, { z: 2.5, x: 0, ease: "power1.inOut", duration: 1 }, 4);
+      }
     }, containerRef);
     
     return () => ctx.revert();
@@ -127,7 +142,7 @@ export function Hero3D() {
                 <pointLight position={[-4, 2, 2]} intensity={1.2} color="#ffffff" />
                 <pointLight position={[4, 2, -2]} intensity={1.2} color="#93c5fd" />
                 <Suspense fallback={null}>
-                  <CarModel />
+                  <CarModel ref={carRef} />
                   <ContactShadows resolution={1024} scale={10} blur={2} opacity={0.6} far={10} color="#000000" />
                 </Suspense>
               </Canvas>
