@@ -1,20 +1,37 @@
 'use client';
 
-import { Suspense, useEffect, useState, useRef } from 'react';
+import { Suspense, useEffect, useState, useRef, Component, ReactNode } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { useGLTF, Environment, ContactShadows, useProgress } from '@react-three/drei';
+import { useGLTF, ContactShadows, useProgress } from '@react-three/drei';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useTranslations } from 'next-intl';
 
 gsap.registerPlugin(ScrollTrigger);
 
+class CanvasErrorBoundary extends Component<{ children: ReactNode; fallback: ReactNode }, { hasError: boolean }> {
+  constructor(props: { children: ReactNode; fallback: ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  componentDidCatch(error: any) {
+    console.warn('3D Canvas encountered an error:', error);
+  }
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback;
+    }
+    return this.props.children;
+  }
+}
+
 function CarModel() {
-  // Using the ferrari model downloaded
   const { scene } = useGLTF('/models/ferrari.glb');
   
   useEffect(() => {
-    // Tweak materials for a darker, more luxurious look
     scene.traverse((child: any) => {
       if (child.isMesh && child.material) {
         if (child.name.includes('body')) {
@@ -43,14 +60,20 @@ export function Hero3D() {
 
   useEffect(() => {
     if (progress === 100) {
-      setTimeout(() => setLoaded(true), 500); // slight delay for smooth transition
+      const timer = setTimeout(() => setLoaded(true), 400);
+      return () => clearTimeout(timer);
     }
   }, [progress]);
+
+  // Safety fallback: ensure page is always usable even on headless or slow networks
+  useEffect(() => {
+    const safetyTimer = setTimeout(() => setLoaded(true), 2500);
+    return () => clearTimeout(safetyTimer);
+  }, []);
 
   useEffect(() => {
     if (!loaded) return;
     
-    // Setup GSAP scroll animations
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -61,19 +84,10 @@ export function Hero3D() {
         }
       });
 
-      // Simple rotation of the canvas wrapper (alternatively rotate the 3D model, but doing it on canvas or inside threejs is common. Here we'll just rotate the model inside R3F or fade panels)
-      // Since it's easier to manage in DOM for panels:
-      
-      // Panel 1 fades out
       tl.to(panel1Ref.current, { opacity: 0, y: -50, duration: 1 }, 0);
-      
-      // Panel 2 fades in then out
       tl.fromTo(panel2Ref.current, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1 }, 1);
       tl.to(panel2Ref.current, { opacity: 0, y: -50, duration: 1 }, 3);
-      
-      // Panel 3 fades in at the end
       tl.fromTo(panel3Ref.current, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1 }, 4);
-      
     }, containerRef);
     
     return () => ctx.revert();
@@ -90,7 +104,7 @@ export function Hero3D() {
           <div className="h-full bg-blue-500 transition-all duration-300" style={{ width: `${progress}%` }} />
         </div>
         <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/55">
-          {t('loading', { fallback: 'Chargement' })} {Math.round(progress)}%
+          {t('loading')} {Math.round(progress)}%
         </div>
       </div>
 
@@ -100,13 +114,24 @@ export function Hero3D() {
           
           {/* Canvas Background */}
           <div ref={canvasRef} className="absolute inset-0 z-0">
-            <Canvas camera={{ position: [0, 1.5, 5], fov: 45 }}>
-              <Suspense fallback={null}>
-                <Environment preset="city" />
-                <CarModel />
-                <ContactShadows resolution={1024} scale={10} blur={2} opacity={0.5} far={10} color="#000000" />
-              </Suspense>
-            </Canvas>
+            <CanvasErrorBoundary fallback={
+              <div className="w-full h-full flex items-center justify-center bg-[#08090c]">
+                <div className="w-[600px] h-[300px] bg-blue-600/10 rounded-full blur-3xl" />
+              </div>
+            }>
+              <Canvas camera={{ position: [0, 1.5, 5], fov: 45 }}>
+                <ambientLight intensity={1.5} />
+                <directionalLight position={[10, 15, 10]} intensity={2.5} />
+                <directionalLight position={[-10, 10, -10]} intensity={1.0} />
+                <pointLight position={[0, 4, 3]} intensity={2.0} color="#60a5fa" />
+                <pointLight position={[-4, 2, 2]} intensity={1.2} color="#ffffff" />
+                <pointLight position={[4, 2, -2]} intensity={1.2} color="#93c5fd" />
+                <Suspense fallback={null}>
+                  <CarModel />
+                  <ContactShadows resolution={1024} scale={10} blur={2} opacity={0.6} far={10} color="#000000" />
+                </Suspense>
+              </Canvas>
+            </CanvasErrorBoundary>
           </div>
 
           {/* Gradients Overlay */}

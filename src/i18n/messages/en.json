@@ -31,8 +31,9 @@
     "closeMenu": "Fermer le menu"
   },
   "hero": {
+    "loading": "Loading",
     "eyebrow": "ReflexRent · Paris",
-    "title1": "L'art de rouler",
+    "title1": "The art of driving",
     "title2": "autrement.",
     "subtitle": "Berlines, sportives, supercars et 4×4 d'exception. Livrés à votre porte, partout en France.",
     "scrollHint": "Faites défiler",

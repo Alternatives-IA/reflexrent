@@ -31,6 +31,7 @@
     "closeMenu": "Fermer le menu"
   },
   "hero": {
+    "loading": "Chargement",
     "eyebrow": "ReflexRent · Paris",
     "title1": "L'art de rouler",
     "title2": "autrement.",
