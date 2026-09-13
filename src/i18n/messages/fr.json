@@ -1,0 +1,123 @@
+{
+  "common": {
+    "brand": "ReflexRent",
+    "tagline": "Location de Véhicules d'Exception",
+    "slogan": "L'art de rouler autrement.",
+    "since": "Depuis 2008",
+    "loading": "Chargement",
+    "reserve": "Réserver",
+    "reserveViaWhatsApp": "Réserver via WhatsApp",
+    "seeVehicles": "Voir les véhicules disponibles",
+    "seeAll": "Voir tout le catalogue",
+    "seeMore": "En savoir plus",
+    "contactUs": "Nous contacter",
+    "perDay": "/ jour",
+    "fromPrice": "à partir de",
+    "places": "{count, plural, one {# place} other {# places}}",
+    "luggage": "{count, plural, one {# bagage} other {# bagages}}",
+    "horsepower": "{count} ch",
+    "zeroToHundred": "0-100 km/h",
+    "topSpeed": "Vitesse max"
+  },
+  "nav": {
+    "home": "Accueil",
+    "catalog": "Nos véhicules",
+    "categories": "Catégories",
+    "services": "Services",
+    "history": "Notre histoire",
+    "contact": "Contact",
+    "reserve": "Réserver",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu"
+  },
+  "hero": {
+    "eyebrow": "ReflexRent · Paris",
+    "title1": "L'art de rouler",
+    "title2": "autrement.",
+    "subtitle": "Berlines, sportives, supercars et 4×4 d'exception. Livrés à votre porte, partout en France.",
+    "scrollHint": "Faites défiler",
+    "detailTag": "Précision · Détail · Performance",
+    "detailTitle1": "Chaque ligne pensée",
+    "detailTitle2": "pour vous porter.",
+    "finalCallout": "Réservez votre prochaine sortie ↓"
+  },
+  "reservation": {
+    "title": "Réservez votre prochaine sortie",
+    "subtitle": "Récupération à notre agence parisienne. Réponse confirmée sous 1 heure.",
+    "pickupLocation": "Lieu de retrait",
+    "pickupDate": "Date de retrait",
+    "returnDate": "Date de retour",
+    "pickupAddress": "Paris · 16ᵉ",
+    "addressDetail": "2 Avenue de la Porte de Saint-Cloud",
+    "cta": "Voir les véhicules disponibles"
+  },
+  "home": {
+    "vehicles": {
+      "eyebrow": "Catalogue",
+      "title": "Nos 50 modèles d'exception",
+      "subtitle": "Une sélection rigoureuse. Des derniers modèles aux légendes intemporelles.",
+      "seeAll": "Voir les 50 véhicules"
+    },
+    "categories": {
+      "eyebrow": "Trouvez votre style",
+      "title": "Naviguer par catégorie",
+      "subtitle": "De la citadine au supercar, chaque catégorie est pensée pour un usage."
+    },
+    "services": {
+      "eyebrow": "Au-delà de la location",
+      "title": "Une expérience complète",
+      "subtitle": "Quatre services pensés pour faire de chaque trajet une exception.",
+      "items": [
+        { "title": "Livraison à domicile", "desc": "Votre véhicule chez vous, à l'heure, sans condition. Paris, Lyon, Cannes, Genève, Monaco." },
+        { "title": "Chauffeur sur demande", "desc": "Un conducteur professionnel à vos côtés, discret, ponctuel, anglophone." },
+        { "title": "Longue durée", "desc": "Tarifs dégressifs à la semaine et au mois. Idéal pour les séjours prolongés ou les tournages." },
+        { "title": "VIP aéroport", "desc": "Accueil personnalisé à Roissy, Le Bourget ou Orly. Sortie de jet à clé en main." }
+      ]
+    },
+    "history": {
+      "eyebrow": "Notre histoire",
+      "title": "Depuis 2008, deux passionnés ont choisi l'exception.",
+      "p1": "Deux amis. Une obsession partagée pour les belles voitures, et pour le service qui va avec. En 2008, ils décident que la location, ce sera autre chose chez eux. Pas une formalité. Pas un comptoir. Un événement.",
+      "p2": "Aujourd'hui, notre flotte est sans équivalent à Paris. Smart relookées par Brabus, Ferrari hybrides, G Mansory taillées à l'unité, Porsche 356 d'origine. Une règle, jamais bafouée : aucune voiture banale.",
+      "p3": "Plus de 2 000 clients nous accompagnent. Particuliers, dirigeants, productions cinéma. À chacun son moment d'exception."
+    },
+    "testimonials": {
+      "eyebrow": "Avis clients",
+      "title": "Ce qu'ils disent",
+      "subtitle": "Note moyenne 4,9 / 5 sur 2 000+ avis clients."
+    },
+    "faq": {
+      "eyebrow": "Questions fréquentes",
+      "title": "Tout ce qu'il faut savoir",
+      "items": [
+        { "q": "Quelles sont les conditions pour louer ?", "a": "Permis B valide, pièce d'identité, justificatif de domicile. Empreinte de caution selon le véhicule. Aucune limite d'âge supérieure ; pour les supercars, expérience de conduite vivement recommandée." },
+        { "q": "Quelle assurance est incluse ?", "a": "Assurance tous risques avec assistance 24/7 incluse dans le tarif. Possibilité de réduire la franchise via nos options de couverture renforcée." },
+        { "q": "Livrez-vous en dehors de Paris ?", "a": "Oui. Livraison France entière sur devis. Sans surcoût pour Paris intra-muros et Boulogne. Forfait préférentiel sur la Côte d'Azur et les Alpes en saison." },
+        { "q": "Y a-t-il un kilométrage limité ?", "a": "Selon le véhicule. La majorité de la flotte est sans limite kilométrique sur Paris et la France. Quelques supercars conservent une limite, précisée sur leur fiche." },
+        { "q": "Peut-on réserver avec chauffeur ?", "a": "Oui, sur tous les véhicules. Tarif chauffeur en supplément, sur devis. Personnel discret, ponctuel, anglophone." },
+        { "q": "Comment réserver ?", "a": "Choisissez votre véhicule, vos dates, puis envoyez votre demande via WhatsApp. Nous confirmons en moins d'une heure pendant nos horaires d'ouverture." },
+        { "q": "Quelle caution faut-il prévoir ?", "a": "De 1 500 € pour une citadine jusqu'à 25 000 € pour une supercar. Empreinte CB ou virement. Restituée sous 48h après retour du véhicule." },
+        { "q": "Puis-je quitter le territoire français ?", "a": "Oui, sortie Schengen autorisée sur demande préalable. Certaines destinations soumises à validation. Documents fournis sur demande." }
+      ]
+    },
+    "finalCta": {
+      "title": "Prêt à conduire autrement ?",
+      "subtitle": "Réponse sous 1 heure · 7 jours sur 7 · 9h–20h.",
+      "button": "Réserver maintenant"
+    }
+  },
+  "footer": {
+    "tagline": "Location de Véhicules d'Exception · Paris depuis 2008",
+    "nav": "Navigation",
+    "legal": "Mentions légales",
+    "cgv": "Conditions Générales de Vente",
+    "address": "Adresse",
+    "hours": "Horaires",
+    "contact": "Contact",
+    "credits": "© {year} ReflexRent. Tous droits réservés."
+  },
+  "whatsapp": {
+    "tooltip": "Discuter sur WhatsApp",
+    "ariaLabel": "Ouvrir la conversation WhatsApp avec ReflexRent"
+  }
+}

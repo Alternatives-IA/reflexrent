@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+/* --- Container utilitaire --- */
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 md:px-8;
+  }
+}
+
+/* --- Arrière-plan orbes décoratives --- */
+.bg-orbs {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.bg-orbs::before,
+.bg-orbs::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.12;
+}
+.bg-orbs::before {
+  width: 600px;
+  height: 600px;
+  background: #2196f3;
+  top: -200px;
+  left: -100px;
+}
+.bg-orbs::after {
+  width: 500px;
+  height: 500px;
+  background: #1565c0;
+  bottom: -150px;
+  right: -100px;
+}
+
+/* --- Animation bob (indicateur de scroll hero) --- */
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+@utility animate-bob {
+  animation: bob 2.4s ease-in-out infinite;
+}
+
+/* --- Fond global --- */
+body {
+  background-color: #0a0c10;
+  color: white;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+/* --- Prose dark pour mentions légales --- */
+.prose-invert a { color: #60a5fa; }
+.prose-invert a:hover { text-decoration: underline; }
